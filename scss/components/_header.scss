@@ -1,0 +1,25 @@
+@use "../abstracts" as *;
+@use "../base/typography" as typo;
+
+header {
+  padding: 40px 24px 24px 24px;
+  position: relative;
+  @include respond(small, min) {
+    padding: 40px 32px 93px 32px;
+  }
+  @include respond(large, min) {
+    padding: 48px 0 72px 0;
+  }
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include respond(large, min) {
+    max-width: 1110px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 48px;
+  }
+}

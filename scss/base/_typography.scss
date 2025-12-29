@@ -1,0 +1,127 @@
+@use "../abstracts" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+$font-body: "Poppins", sans-serif;
+
+$text-preset-1: (
+  family: $font-body,
+  size: 80px,
+  lineHeight: 1.15,
+  letterSpacing: -2px,
+  weight: 700,
+);
+
+$text-preset-2: (
+  family: $font-body,
+  size: 40px,
+  lineHeight: 1.15,
+  letterSpacing: 1px,
+  weight: 700,
+);
+
+$text-preset-3: (
+  family: $font-body,
+  size: 28px,
+  lineHeight: 1.7,
+  letterSpacing: 0,
+  weight: 700,
+);
+
+$text-preset-4-bold: (
+  family: $font-body,
+  size: 22px,
+  lineHeight: 1.5,
+  letterSpacing: 0,
+  weight: 700,
+);
+
+$text-preset-4-medium: (
+  family: $font-body,
+  size: 22px,
+  lineHeight: 1.65,
+  letterSpacing: 0,
+  weight: 500,
+);
+
+$text-preset-5-bold: (
+  family: $font-body,
+  size: 20px,
+  lineHeight: 1.5,
+  letterSpacing: 0,
+  weight: 700,
+);
+
+$text-preset-5-medium: (
+  family: $font-body,
+  size: 20px,
+  lineHeight: 1.5,
+  letterSpacing: 0,
+  weight: 500,
+);
+
+$text-preset-6-bold: (
+  family: $font-body,
+  size: 18px,
+  lineHeight: 1.75,
+  letterSpacing: 0,
+  weight: 700,
+);
+
+$text-preset-6-medium: (
+  family: $font-body,
+  size: 18px,
+  lineHeight: 1.75,
+  letterSpacing: 0,
+  weight: 500,
+);
+
+$text-preset-7-bold: (
+  family: $font-body,
+  size: 15px,
+  lineHeight: 1.5,
+  letterSpacing: 0,
+  weight: 700,
+);
+
+$text-preset-7-medium: (
+  family: $font-body,
+  size: 15px,
+  lineHeight: 1.75,
+  letterSpacing: 0,
+  weight: 500,
+);
+
+$text-preset-7-italic-medium: (
+  family: $font-body,
+  size: 15px,
+  lineHeight: 1.2,
+  letterSpacing: 0,
+  weight: 500,
+);
+
+body {
+  @include text-preset($text-preset-7-medium);
+  color: $clr-body-text-light;
+}
+
+h1 {
+  @include text-preset($text-preset-2);
+  color: $clr-heading;
+  @include respond(small, min) {
+    @include text-preset($text-preset-1);
+  }
+}
+
+h2 {
+  @include text-preset($text-preset-3);
+  color: $clr-heading;
+  @include respond(small, min) {
+    @include text-preset($text-preset-2);
+  }
+}
+
+h3 {
+  @include text-preset($text-preset-4-bold);
+  color: $clr-heading;
+}

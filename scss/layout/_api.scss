@@ -1,0 +1,16 @@
+@use "../abstracts" as *;
+@use "../base/typography" as typo;
+
+.api__form {
+  padding: 0 24px;
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  @include respond(small, min) {
+    top: -84px;
+    padding: 0;
+  }
+}

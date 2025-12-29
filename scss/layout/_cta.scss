@@ -1,0 +1,30 @@
+@use "../abstracts" as *;
+@use "../base/typography" as typo;
+
+.cta {
+  background-color: $clr-pattern-bg;
+  background-image: url("../images/bg-boost-mobile.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 58px 24px;
+  @include respond(small, min) {
+    background-image: url("../images/bg-boost-desktop.svg");
+    padding: 59px 0;
+  }
+}
+
+.cta__container {
+  display: grid;
+  gap: 24px;
+  justify-items: center;
+  @include respond(small, min) {
+    max-width: 540px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.cta__container h2 {
+  color: $clr-white;
+  text-align: center;
+}

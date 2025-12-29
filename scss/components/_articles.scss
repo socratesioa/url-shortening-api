@@ -1,0 +1,52 @@
+@use "../abstracts" as *;
+@use "../base/typography" as typo;
+
+article {
+  display: grid;
+  gap: 32px;
+  background-color: $clr-white;
+  padding: 76px 20.5px 37px 20.5px;
+  position: relative;
+  @include respond(small, min) {
+    padding: 76px 32px 37px 32px;
+  }
+}
+
+.icon__wrapper {
+  background-color: $clr-pattern-bg;
+  width: 88px;
+  height: 88px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  top: -44px;
+  left: 50%;
+  transform: translateX(-50%);
+  @include respond(large, min) {
+    left: 32px;
+    transform: unset;
+  }
+}
+
+.article__contents {
+  display: grid;
+  gap: 16px;
+  text-align: center;
+  @include respond(large, min) {
+    text-align: left;
+  }
+}
+
+.article--second {
+  @include respond(large, min) {
+    margin-top: 44px;
+  }
+}
+
+.article--third {
+  @include respond(large, min) {
+    margin-top: 88px;
+  }
+}

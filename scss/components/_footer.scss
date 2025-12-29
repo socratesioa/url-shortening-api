@@ -1,0 +1,65 @@
+@use "../abstracts" as *;
+@use "../base/typography" as typo;
+
+footer {
+  background-color: $clr-footer-bg;
+  padding: 55px 24px;
+  @include respond(large, min) {
+    padding: 67.5px 0;
+  }
+}
+
+.footer__container {
+  display: grid;
+  gap: 48px;
+  justify-items: center;
+  @include respond(large, min) {
+    max-width: 1110px;
+    width: 100%;
+    margin: 0 auto;
+    grid-template-columns: auto 1fr;
+    justify-items: start;
+    justify-content: space-between;
+    gap: 0;
+  }
+}
+
+.footer__logo {
+  @include respond(large, min) {
+    justify-self: start;
+  }
+}
+
+.footer__container h2 {
+  color: $clr-white;
+  @include text-preset(typo.$text-preset-7-bold);
+}
+
+.footer__nav-container {
+  display: grid;
+  gap: 40px;
+  text-align: center;
+  @include respond(large, min) {
+    justify-self: end;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 110px;
+  }
+}
+
+.footer__nav-pages {
+  display: grid;
+  gap: 32px;
+  @include respond(large, min) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 90px;
+    text-align: left;
+    align-items: start;
+  }
+}
+
+.footer__nav-column {
+  display: grid;
+  gap: 24px;
+}

@@ -1,0 +1,96 @@
+@use "../abstracts" as *;
+@use "../base/typography" as typo;
+
+.primary__btn {
+  @include text-preset(typo.$text-preset-5-bold);
+  text-decoration: none;
+  color: $clr-white;
+  background-color: $clr-accent;
+  outline: none;
+  border-radius: 100px;
+  padding: 16px 40px;
+  transition: background-color 0.3s ease;
+}
+
+.primary__btn:hover {
+  background-color: $clr-btn-hover;
+}
+
+.primary__btn:focus-visible {
+  outline-offset: 4px;
+  outline: 2px solid $clr-accent;
+}
+
+.submit__btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  @include text-preset(typo.$text-preset-6-bold);
+  color: $clr-white;
+  background-color: $clr-accent;
+  border-radius: 5px;
+  padding: 8.25px;
+  transition: background-color 0.3s ease;
+  @include respond(small, min) {
+    padding: 16px 40px;
+    @include text-preset(typo.$text-preset-5-bold);
+    border-radius: 10px;
+  }
+}
+
+.submit__btn:hover {
+  background-color: $clr-btn-hover;
+}
+
+.submit__btn:focus-visible {
+  outline-offset: 4px;
+  outline: 2px solid $clr-accent;
+}
+
+.hamburger {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  @include respond(large, min) {
+    display: none;
+  }
+}
+
+.hamburger:focus-visible {
+  outline-offset: 4px;
+  outline: 2px solid $clr-accent;
+  border-radius: 4px;
+}
+
+.signup__btn {
+  outline: none;
+  border: none;
+  background-color: $clr-accent;
+  color: $clr-white;
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10.5px;
+  width: 100%;
+  border-radius: 28px;
+  @include text-preset(typo.$text-preset-6-bold);
+  transition: background-color 0.3s ease;
+  @include respond(large, min) {
+    @include text-preset(typo.$text-preset-7-bold);
+    padding: 8px 24px;
+  }
+}
+
+.signup__btn:hover {
+  background-color: $clr-btn-hover;
+}
+
+.signup__btn:focus-visible {
+  outline-offset: 4px;
+  outline: 2px solid $clr-accent;
+}

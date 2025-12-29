@@ -1,0 +1,82 @@
+@use "../abstracts" as *;
+@use "../base/typography" as typo;
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  overflow-x: hidden;
+  margin-bottom: 155px;
+  @include respond(small, min) {
+    gap: 56px;
+    margin-bottom: 156px;
+  }
+  @include respond(large, min) {
+    gap: 100px;
+    display: grid;
+    grid-template-columns: 565px auto;
+    align-items: center;
+    max-width: 1110px;
+    width: 100%;
+    margin: 0 auto;
+    overflow-x: visible;
+    margin-bottom: 156px;
+  }
+}
+
+.hero__img-wrapper {
+  display: flex;
+  align-items: center;
+  padding-left: 28px;
+  @include respond(small, min) {
+    padding-left: 145px;
+  }
+  @include respond(large, min) {
+    padding: 0;
+    grid-column: 2;
+  }
+}
+
+.hero__img {
+  aspect-ratio: 511 / 337;
+  width: 511px;
+  max-width: 130vw;
+  height: auto;
+  @include respond(small, min) {
+    aspect-ratio: 733 / 482;
+    width: 733px;
+    max-width: none;
+    height: auto;
+  }
+  @include respond(large, min) {
+  }
+}
+
+.hero__content {
+  padding: 0 24px;
+  display: grid;
+  gap: 32px;
+  justify-items: center;
+  text-align: center;
+  @include text-preset(typo.$text-preset-6-medium);
+  @include respond(small, min) {
+    @include text-preset(typo.$text-preset-4-medium);
+    max-width: 565px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+  @include respond(large, min) {
+    width: 565px;
+    margin: 0;
+    grid-column: 1;
+    grid-row: 1;
+    justify-items: flex-start;
+    text-align: left;
+  }
+}
+
+.hero__text {
+  display: grid;
+  gap: 16px;
+}

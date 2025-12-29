@@ -1,0 +1,22 @@
+@use "sass:map";
+@use "breakpoints" as *;
+
+@mixin text-preset($preset) {
+    font-family: map.get($preset, family);
+    font-size: map.get($preset, size);
+    line-height: map.get($preset, lineHeight);
+    font-weight: map.get($preset, weight);
+    letter-spacing: map.get($preset, letterSpacing);
+}
+
+@mixin respond($size, $type: max) {
+  $value: map.get($breakpoints, $size);
+
+  @if $value == null {
+    @warn "Breakpoint `#{$size}` not found in $breakpoints map.";
+  } @else {
+    @media (#{$type}-width: $value) {
+      @content;
+    }
+  }
+}
