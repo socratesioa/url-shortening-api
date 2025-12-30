@@ -1,18 +1,54 @@
-// --- DOM ELEMENTS ---
+// Declarations
 const form = document.getElementById("shortener");
 const urlInput = document.getElementById("url");
 const urlError = document.getElementById("url-error");
-const resultContainer = document.getElementById("result"); // Make sure this exists in HTML
+const resultContainer = document.getElementById("result");
 
-// --- CLEAR ERRORS ON INPUT ---
+const STORAGE_KEY = "shortenedUrls";
+
+// Local Storage
+function getStoredUrls() {
+  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+}
+
+function saveUrlPair(originalUrl, shortUrl) {
+  const existing = getStoredUrls();
+  existing.unshift({ originalUrl, shortUrl });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+}
+
+// Rendering
+function renderUrlItem(originalUrl, shortUrl) {
+  const div = document.createElement("div");
+  div.className = "shortened__urls";
+
+  div.innerHTML = `
+    <span class="original__url">${originalUrl}</span>
+    <a href="https://${shortUrl}" class="short__link" target="_blank">
+      ${shortUrl}
+    </a>
+    <button type="button" class="copy__btn">Copy</button>
+  `;
+
+  resultContainer.prepend(div);
+}
+
+// Load stored URLs
+document.addEventListener("DOMContentLoaded", () => {
+  const stored = getStoredUrls();
+  stored.forEach(({ originalUrl, shortUrl }) => {
+    renderUrlItem(originalUrl, shortUrl);
+  });
+});
+
+// Clear errors on input
 urlInput.addEventListener("input", () => {
   urlInput.classList.remove("input__error");
   urlInput.removeAttribute("aria-invalid");
   urlError.textContent = "";
-  resultContainer.textContent = "";
 });
 
-// --- VALIDATORS ---
+// Validators
 function validateUrl(value) {
   const trimmed = value.trim();
 
@@ -29,7 +65,7 @@ function validateUrl(value) {
 
 const validators = { url: validateUrl };
 
-// --- SUBMIT HANDLER ---
+// Submit Handler
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -58,7 +94,6 @@ form.addEventListener("submit", async (e) => {
 
   if (!isValid) return;
 
-  // --- Send input as-is to Netlify function ---
   const longUrl = data.url.trim();
 
   try {
@@ -75,44 +110,51 @@ form.addEventListener("submit", async (e) => {
       return;
     }
 
-    // --- Render short URL with copy button ---
-    resultContainer.innerHTML = `
-      <div class="shortened__urls">
-        <span class="original__url">${longUrl}</span>
-        <a href="https://${result.shortUrl}" class="short__link" target="_blank">${result.shortUrl}</a>
-        <button class="copy__btn">Copy</button>
-      </div>
-    `;
+    // Success
+    renderUrlItem(longUrl, result.shortUrl);
+    saveUrlPair(longUrl, result.shortUrl);
+    form.reset();
   } catch (error) {
     showApiError("Network error. Please try again.");
   }
 });
 
-// --- COPY BUTTON FUNCTIONALITY ---
+// Copy Button Functionality
 resultContainer.addEventListener("click", (e) => {
-  if (e.target.classList.contains("copy__btn")) {
-    const container = e.target.closest(".shortened__urls");
-    if (!container) return;
+  if (!e.target.classList.contains("copy__btn")) return;
 
-    const shortLinkEl = container.querySelector(".short__link");
-    if (!shortLinkEl) return;
+  const container = e.target.closest(".shortened__urls");
+  if (!container) return;
 
-    const shortUrl = shortLinkEl.href;
+  const shortLinkEl = container.querySelector(".short__link");
+  if (!shortLinkEl) return;
 
-    navigator.clipboard
-      .writeText(shortUrl)
-      .then(() => {
-        e.target.textContent = "Copied!";
-        setTimeout(() => (e.target.textContent = "Copy"), 1500);
-      })
-      .catch(() => {
-        e.target.textContent = "Failed";
-        setTimeout(() => (e.target.textContent = "Copy"), 1500);
-      });
-  }
+  const shortUrl = shortLinkEl.href;
+  const btn = e.target;
+
+  navigator.clipboard
+    .writeText(shortUrl)
+    .then(() => {
+      btn.classList.add("copied");
+      btn.textContent = "Copied!";
+
+      setTimeout(() => {
+        btn.classList.remove("copied");
+        btn.textContent = "Copy";
+      }, 4000);
+    })
+    .catch(() => {
+      btn.classList.add("failed");
+      btn.textContent = "Failed";
+
+      setTimeout(() => {
+        btn.classList.remove("failed");
+        btn.textContent = "Copy";
+      }, 2500);
+    });
 });
 
-// --- API ERROR HANDLER ---
+// Api Error Handler
 function showApiError(message) {
   urlError.textContent = message;
   urlInput.setAttribute("aria-invalid", "true");

@@ -71,7 +71,12 @@ svg {
   width: 100%;
   margin: 0 auto;
   background-color: #ffffff;
+  box-shadow: -10px 0 25px -20px rgba(0, 0, 0, 0.25), 10px 0 25px -20px rgba(0, 0, 0, 0.25);
   overflow-x: hidden;
+}
+
+body {
+  background-color: hsl(257, 27%, 90%);
 }
 
 .no-scroll {
@@ -307,6 +312,48 @@ article {
   outline: 2px solid #2bd0d0;
 }
 
+.copy__btn {
+  background-color: #2bd0d0;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 8.5px;
+  transition: background-color 0.3s ease;
+}
+@media (min-width: 600px) {
+  .copy__btn {
+    padding: 8.5px 31px;
+  }
+}
+
+.copy__btn:hover {
+  background-color: #9ae3e3;
+}
+
+.copied {
+  background-color: #3a3054;
+}
+
+.copied:hover {
+  background-color: #3a3054;
+}
+
+.failed {
+  background-color: #f46363;
+}
+
+.failed:hover {
+  background-color: #f46363;
+}
+
 .primary__nav {
   display: none;
   outline: none;
@@ -489,7 +536,7 @@ article {
   border-radius: 10px;
   align-items: start;
 }
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .shortener {
     background-image: url("../images/bg-shorten-desktop.svg");
     grid-template-columns: 1fr auto;
@@ -643,12 +690,12 @@ footer {
   flex-direction: column;
   gap: 40px;
   overflow-x: hidden;
-  margin-bottom: 155px;
+  margin-bottom: 75px;
 }
 @media (min-width: 600px) {
   .hero {
     gap: 56px;
-    margin-bottom: 156px;
+    margin-bottom: 72px;
   }
 }
 @media (min-width: 1200px) {
@@ -661,7 +708,7 @@ footer {
     width: 100%;
     margin: 0 auto;
     overflow-x: visible;
-    margin-bottom: 156px;
+    margin-bottom: 72px;
   }
 }
 
@@ -738,34 +785,151 @@ footer {
 }
 
 .api__form {
+  position: relative;
   padding: 0 24px;
-  z-index: 10;
-  position: absolute;
-  width: 100%;
-  top: -80px;
-  left: 50%;
-  transform: translateX(-50%);
+  z-index: 1;
 }
 @media (min-width: 600px) {
   .api__form {
-    top: -84px;
-    padding: 0;
+    padding: 0 32px;
+  }
+}
+
+.api__form::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  top: 80px;
+  background-color: #eff1f7;
+  z-index: 0;
+}
+
+.api__form > * {
+  position: relative;
+  z-index: 1;
+}
+
+.result {
+  margin-top: 24px;
+  display: grid;
+  gap: 24px;
+}
+
+.shortened__urls {
+  background-color: #ffffff;
+  border-radius: 5px;
+  display: grid;
+  gap: 16px;
+  padding: 15px 16px;
+  position: relative;
+}
+@media (min-width: 600px) {
+  .shortened__urls {
+    padding: 11px 34px;
+  }
+}
+@media (min-width: 1200px) {
+  .shortened__urls {
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    padding: 21px 28px;
+    gap: 24px;
+    max-width: 1110px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.shortened__urls::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  top: 49px;
+  left: 0;
+  background-color: hsla(257, 7%, 63%, 0.25);
+  pointer-events: none;
+}
+@media (min-width: 1200px) {
+  .shortened__urls::after {
+    display: none;
+  }
+}
+
+.original__url {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: #34313d;
+  display: inline-block;
+  max-width: 295px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+@media (min-width: 600px) {
+  .original__url {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: 0;
+    max-width: 500px;
+  }
+}
+@media (min-width: 768px) {
+  .original__url {
+    max-width: 636px;
+  }
+}
+@media (min-width: 1200px) {
+  .original__url {
+    max-width: 670px;
+  }
+}
+
+.short__link {
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: #2bd0d0;
+  justify-self: start;
+}
+@media (min-width: 600px) {
+  .short__link {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1200px) {
+  .short__link {
+    justify-self: end;
+    text-align: right;
   }
 }
 
 .statistics {
   background-color: #eff1f7;
-  padding: 152px 0 88px 0;
+  padding: 80px 0 88px 0;
   position: relative;
 }
 @media (min-width: 600px) {
   .statistics {
-    padding: 176px 0 80px 0;
+    padding: 94px 0 80px 0;
   }
 }
 @media (min-width: 1200px) {
   .statistics {
-    padding: 173px 0 96px 0;
+    padding: 88px 0 96px 0;
   }
 }
 

@@ -6,10 +6,10 @@
   flex-direction: column;
   gap: 40px;
   overflow-x: hidden;
-  margin-bottom: 155px;
+  margin-bottom: 75px;
   @include respond(small, min) {
     gap: 56px;
-    margin-bottom: 156px;
+    margin-bottom: 72px;
   }
   @include respond(large, min) {
     gap: 100px;
@@ -20,7 +20,7 @@
     width: 100%;
     margin: 0 auto;
     overflow-x: visible;
-    margin-bottom: 156px;
+    margin-bottom: 72px;
   }
 }
 

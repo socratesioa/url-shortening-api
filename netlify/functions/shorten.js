@@ -33,7 +33,6 @@ export async function handler(event) {
     const result = await response.json();
 
     if (!response.ok) {
-      // Return error from Rebrandly
       return {
         statusCode: response.status,
         body: JSON.stringify({
@@ -47,6 +46,7 @@ export async function handler(event) {
       body: JSON.stringify({ shortUrl: result.shortUrl }),
     };
   } catch (err) {
+    console.error(err);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: "Server error" }),

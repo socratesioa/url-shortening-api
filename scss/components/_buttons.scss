@@ -94,3 +94,39 @@
   outline-offset: 4px;
   outline: 2px solid $clr-accent;
 }
+
+.copy__btn {
+  background-color: $clr-accent;
+  color: $clr-white;
+  @include text-preset(typo.$text-preset-7-bold);
+  text-decoration: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 8.5px;
+  transition: background-color 0.3s ease;
+  @include respond(small, min) {
+    padding: 8.5px 31px;
+  }
+}
+
+.copy__btn:hover {
+  background-color: $clr-btn-hover;
+}
+
+.copied {
+  background-color: $clr-btn-copied;
+}
+
+.copied:hover {
+  background-color: $clr-btn-copied;
+}
+
+.failed {
+  background-color: $clr-error;
+}
+
+.failed:hover {
+  background-color: $clr-error;
+}

@@ -83,34 +83,39 @@
             <a href="#apiForm" class="primary__btn">Get Started</a>
           </div>
         </section>
-
+        <section
+          id="apiForm"
+          class="api__form"
+          aria-labelledby="apiForm-heading"
+        >
+          <h2 id="apiForm-heading" class="visually-hidden">
+            Shorten your URLs with Shortly
+          </h2>
+          <form id="shortener" class="shortener" novalidate>
+            <div class="input__group">
+              <label for="url" class="visually-hidden">URL</label>
+              <input
+                type="text"
+                name="url"
+                id="url"
+                autocomplete="off"
+                aria-describedby="url-error"
+                placeholder="Shorten a link here..."
+                required
+              />
+              <span
+                class="error__message"
+                id="url-error"
+                aria-live="polite"
+              ></span>
+            </div>
+            <button type="submit" id="submitBtn" class="submit__btn">
+              Shorten It!
+            </button>
+          </form>
+          <div id="result" class="result"></div>
+        </section>
         <section id="statistics" class="statistics">
-          <div id="apiForm" class="api__form">
-            <form id="shortener" class="shortener" novalidate>
-              <div class="input__group">
-                <label for="url" class="visually-hidden">URL</label>
-                <input
-                  type="text"
-                  name="url"
-                  id="url"
-                  autocomplete="off"
-                  aria-describedby="url-error"
-                  placeholder="Shorten a link here..."
-                  required
-                />
-                <span
-                  class="error__message"
-                  id="url-error"
-                  aria-live="polite"
-                ></span>
-              </div>
-
-              <button type="submit" id="submitBtn" class="submit__btn">
-                Shorten It!
-              </button>
-            </form>
-            <div id="result"></div>
-          </div>
           <div class="statistics__intro" aria-labelledby="statistics-heading">
             <h2 id="statistics-heading">Advanced Statistics</h2>
             <p>
