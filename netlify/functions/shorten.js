@@ -1,52 +1,41 @@
 export async function handler(event) {
   try {
     const { url } = JSON.parse(event.body);
+
     if (!url) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: "No URL provided" }),
+        body: JSON.stringify({ error: "URL is required" }),
       };
     }
 
-    const apiKey = process.env.REBRANDLY_API_KEY;
-    if (!apiKey) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: "Server missing API key" }),
-      };
-    }
-
-    const body = {
-      destination: url,
-      domain: { fullName: "rebrand.ly" },
-    };
-
-    const response = await fetch("https://api.rebrandly.com/v1/links", {
+    const response = await fetch("https://api.tinyurl.com/create", {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${process.env.TINYURL_API_KEY}`,
         "Content-Type": "application/json",
-        apikey: apiKey,
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify({ url }),
     });
 
-    const result = await response.json();
+    const data = await response.json();
 
     if (!response.ok) {
       return {
         statusCode: response.status,
         body: JSON.stringify({
-          error: result.message || "Error from Rebrandly",
+          error: data.errors?.[0]?.message || "TinyURL API error",
         }),
       };
     }
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ shortUrl: result.shortUrl }),
+      body: JSON.stringify({
+        shortUrl: data.data.tiny_url.replace(/^https?:\/\//, ""),
+      }),
     };
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
     return {
       statusCode: 500,
       body: JSON.stringify({ error: "Server error" }),
