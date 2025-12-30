@@ -115,6 +115,11 @@
   background-color: $clr-btn-hover;
 }
 
+.copy__btn:focus-visible {
+  outline-offset: 4px;
+  outline: 2px solid $clr-accent;
+}
+
 .copied {
   background-color: $clr-btn-copied;
 }
@@ -123,10 +128,20 @@
   background-color: $clr-btn-copied;
 }
 
+.copied:focus-visible {
+  outline-offset: 4px;
+  outline: 2px solid $clr-btn-copied;
+}
+
 .failed {
   background-color: $clr-error;
 }
 
 .failed:hover {
   background-color: $clr-error;
+}
+
+.failed:focus-visible {
+  outline-offset: 4px;
+  outline: 2px solid $clr-error;
 }

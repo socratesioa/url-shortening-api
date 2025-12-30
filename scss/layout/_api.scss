@@ -87,7 +87,7 @@
 }
 
 .short__link {
-  position: relative;
+  outline: none;
   @include text-preset(typo.$text-preset-7-medium);
   color: $clr-accent;
   justify-self: start;
@@ -98,4 +98,10 @@
     justify-self: end;
     text-align: right;
   }
+}
+
+.short__link:focus-visible {
+  outline-offset: 4px;
+  outline: 2px solid $clr-accent;
+  border-radius: 4px;
 }

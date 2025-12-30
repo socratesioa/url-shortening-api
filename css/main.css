@@ -338,6 +338,11 @@ article {
   background-color: #9ae3e3;
 }
 
+.copy__btn:focus-visible {
+  outline-offset: 4px;
+  outline: 2px solid #2bd0d0;
+}
+
 .copied {
   background-color: #3a3054;
 }
@@ -346,12 +351,22 @@ article {
   background-color: #3a3054;
 }
 
+.copied:focus-visible {
+  outline-offset: 4px;
+  outline: 2px solid #3a3054;
+}
+
 .failed {
   background-color: #f46363;
 }
 
 .failed:hover {
   background-color: #f46363;
+}
+
+.failed:focus-visible {
+  outline-offset: 4px;
+  outline: 2px solid #f46363;
 }
 
 .primary__nav {
@@ -892,7 +907,7 @@ footer {
 }
 
 .short__link {
-  position: relative;
+  outline: none;
   font-family: "Poppins", sans-serif;
   font-size: 15px;
   line-height: 1.75;
@@ -915,6 +930,12 @@ footer {
     justify-self: end;
     text-align: right;
   }
+}
+
+.short__link:focus-visible {
+  outline-offset: 4px;
+  outline: 2px solid #2bd0d0;
+  border-radius: 4px;
 }
 
 .statistics {
